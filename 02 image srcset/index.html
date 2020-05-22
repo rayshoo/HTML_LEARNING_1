@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <template>
+  srcset 경로 실제사이즈 > 브라우저가 사용자환경에따라 알아서 골라서 출력 
+  px이 아닌 w단위 혹은 x 단위를 입력해야함, 작은 크기 이미지부터 순서대로 입력
+
+  w(Width descriptor) 는 이미지의 원본 크기(가로 너비)를 의미
+  x(Device pixel ratin descriptor)는 이미지의 비율 의도를 의미
+  w단위에서 사용한 예제를 다음과 같이 수정 가능 > 권장X - w권장
+  <img srcset="../images/heropy_small.png 1x,
+  ../images/heropy_medium.png 1.75x,
+  ../images/heropy_large.png 2.5x"
+  src="../images/heropy.png" alt="HEROPY">
+
+  예를들어 400x300(px) 크기 이미지의 w값은 400w
+  srcset 을 사용하지 못하는 환경이면 src가 사용됨
+
+  화면 크기 조정하면서 새로고침하면서 테스트> 개발자 도구 Network disable casche 체크되있어야함
+  </template>
+  
+  <!-- <img srcset="../images/heropy_small.png 400w,
+  ../images/heropy_medium.png 700w,
+  ../images/heropy_large.png 1000w" src="../images/heropy.png" alt="HEROPY"> -->
+
+  <template>
+    고정된 이미지 크기를 유지하려면 width속성을 추가할 수 있음 > sizes 속성과는 다른 개념임!!
+  </template>
+  <img srcset="../images/heropy_small.png 400w,
+  ../images/heropy_medium.png 700w,
+  ../images/heropy_large.png 1000w"
+  width="400"
+  src="../images/heropy.png" alt="HEROPY">
+</body>
+
+<template>
+  결과 : 뷰포트 너비가 400px 이하일때 small(400px) 사용됨
+  뷰포트 너비가 401~700px 일때 medium(700px)사용됨
+  뷰포트 너비가 701px이상일때는 large(1000px)사용됨
+
+  srcset을 안쓴다면 하단처럼 적어야함..
+</template>
+<style>
+  .some-image{
+    width : 400px;
+    height :  400px;
+    background-image : url('images/heropy_samll.png');
+    background-repeat : no-repeat;
+  }
+  @media(min-width : 401px)
+  {
+    .some-image{
+      width : 700px;
+      height : 700px;
+      background-image:url('images/heropy_medium.png');
+    }
+  }
+  @media(min-width : 701px)
+  {
+    .some-image{
+      width : 1000px;
+      height : 1000px;
+      background-image : url('images/heropy_large.png');
+    }
+  }
+</style>
+</html>

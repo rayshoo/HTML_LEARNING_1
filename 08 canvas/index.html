@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <template>
+    Canvas API이나 WebGL API 를 사용하여 그래픽이나 애니메이션을 랜더링
+    width : 캔버스의 가로 너비
+    height : 캔버스의 세로 너비
+    inline 속성
+  </template>
+
+  <canvas id="canvas" width="200" height="150"></canvas>
+  <script>
+    (function(){
+      const canvas = document.querySelector('#canvas');
+      if(canvas.getContext){
+        let ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'rgb(200, 0, 0)';
+        ctx.fillRect(10, 10, 50, 50);
+
+        ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+        ctx.fillRect(30, 30, 50, 50);
+      }
+    })()
+  </script>
+</body>
+</html>
